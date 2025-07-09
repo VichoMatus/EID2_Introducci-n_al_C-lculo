@@ -64,24 +64,21 @@ pip install -r requirements.txt
 
 ### 3. Ejecutar la Aplicación
 
-#### 🖥️ Interfaz Gráfica (GUI) - Recomendado
+#### 🖥️ Interfaz Gráfica (GUI) - Por Defecto
 
 ```bash
-# Lanzar GUI directamente
-python main_gui.py
-
-# O seleccionar GUI desde menú principal
+# Ejecutar aplicación (inicia GUI automáticamente)
 python main.py
+
+# O ejecutar GUI directamente
+python main_gui.py
 ```
 
 #### 💻 Línea de Comandos (CLI)
 
 ```bash
-# Lanzar CLI directamente
+# Ejecutar CLI específicamente
 python main.py cli
-
-# O seleccionar CLI desde menú principal
-python main.py
 ```
 
 #### 🎯 Demo Automático
@@ -89,6 +86,26 @@ python main.py
 ```bash
 # Ver resolución completa del problema
 python demo.py
+
+# O desde main
+python main.py demo
+```
+
+#### 📖 Ayuda
+
+```bash
+# Ver opciones disponibles
+python main.py help
+```
+
+#### ⚡ Scripts de Inicio Rápido
+
+```bash
+# Windows
+./iniciar.bat
+
+# Linux/Mac
+./iniciar.sh
 ```
 
 ## 🖥️ Interfaz Gráfica (GUI)

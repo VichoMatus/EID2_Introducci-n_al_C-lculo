@@ -8,9 +8,7 @@ Fecha: Julio 2025
 Esta aplicación resuelve el problema de optimización de GPU usando la Ley de Amdahl
 para grupos pares según el documento del proyecto.
 
-Modos disponibles:
-- GUI: Interfaz gráfica moderna con CustomTkinter
-- CLI: Interfaz de línea de comandos
+Interfaz: CustomTkinter (GUI Moderna)
 """
 
 import sys
@@ -19,59 +17,11 @@ import os
 # Agregar el directorio src al path para las importaciones
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'src'))
 
-def mostrar_banner():
-    """Muestra el banner de la aplicación"""
-    print("""
-    ┌─────────────────────────────────────────────────────────────┐
-    │                                                             │
-    │           CALCULADORA LEY DE AMDAHL - GPU                  │
-    │                                                             │
-    │  Proyecto: EID2 - Introducción al Cálculo                  │
-    │  Tema: Optimización de componentes GPU                     │
-    │  Aplicación: Arquitectura Limpia en Python                │
-    │                                                             │
-    │  🎯 Funcionalidades:                                        │
-    │     • Cálculo automático de aceleraciones                  │
-    │     • Análisis de componentes GPU                          │
-    │     • Generación de gráficos                               │
-    │     • Resolución problema completo                         │
-    │                                                             │
-    │  🖥️  Modos disponibles:                                     │
-    │     • GUI: Interfaz gráfica moderna                        │
-    │     • CLI: Línea de comandos                               │
-    │                                                             │
-    └─────────────────────────────────────────────────────────────┘
-    """)
-
-def seleccionar_modo():
-    """Permite al usuario seleccionar el modo de ejecución"""
-    print("Seleccione el modo de ejecución:")
-    print("1. 🖥️  GUI - Interfaz Gráfica (Recomendado)")
-    print("2. 💻 CLI - Línea de Comandos")
-    print("0. ❌ Salir")
-    
-    while True:
-        try:
-            opcion = input("\nIngrese su opción (1/2/0): ").strip()
-            
-            if opcion == "1":
-                return "gui"
-            elif opcion == "2":
-                return "cli"
-            elif opcion == "0":
-                print("👋 ¡Hasta luego!")
-                return None
-            else:
-                print("❌ Opción no válida. Ingrese 1, 2 o 0.")
-                
-        except (KeyboardInterrupt, EOFError):
-            print("\n👋 ¡Hasta luego!")
-            return None
-
 def ejecutar_gui():
     """Ejecuta la interfaz gráfica"""
     try:
-        print("🚀 Iniciando interfaz gráfica...")
+        print("🚀 Iniciando Calculadora Ley de Amdahl - Interfaz Gráfica")
+        print("📊 Cargando componentes y configuración...")
         from src.presentation.gui import main as gui_main
         gui_main()
     except ImportError as e:
@@ -86,46 +36,58 @@ def ejecutar_gui():
         ejecutar_cli()
 
 def ejecutar_cli():
-    """Ejecuta la interfaz de línea de comandos"""
+    """Ejecuta la interfaz de línea de comandos como respaldo"""
     try:
         print("💻 Iniciando interfaz de línea de comandos...")
         from src.presentation.cli import main as cli_main
         cli_main()
     except Exception as e:
         print(f"\n❌ Error crítico en CLI: {e}")
+        input("\nPresione Enter para salir...")
         sys.exit(1)
 
 def main():
-    """Función principal"""
+    """Función principal - Inicia directamente la GUI"""
     try:
-        mostrar_banner()
-        
-        # Si se pasa argumento de línea de comandos
+        # Verificar argumentos de línea de comandos para casos especiales
         if len(sys.argv) > 1:
             modo = sys.argv[1].lower()
-            if modo in ["gui", "g", "--gui"]:
-                ejecutar_gui()
-                return
-            elif modo in ["cli", "c", "--cli"]:
+            if modo in ["cli", "c", "--cli"]:
                 ejecutar_cli()
                 return
-            else:
-                print(f"❌ Argumento no válido: {sys.argv[1]}")
-                print("💡 Uso: python main.py [gui|cli]")
+            elif modo in ["demo", "d", "--demo"]:
+                print("🎯 Ejecutando demo automático...")
+                import subprocess
+                subprocess.run([sys.executable, "demo.py"])
+                return
+            elif modo in ["help", "h", "--help"]:
+                print("""
+🎯 CALCULADORA LEY DE AMDAHL - AYUDA
+
+Uso: python main.py [opción]
+
+Opciones:
+  (sin argumentos)  Ejecutar interfaz gráfica (por defecto)
+  cli               Ejecutar interfaz de línea de comandos
+  demo              Ejecutar demostración automática
+  help              Mostrar esta ayuda
+
+Ejemplos:
+  python main.py         # Interfaz gráfica
+  python main.py cli     # Línea de comandos
+  python main.py demo    # Demo automático
+  python main_gui.py     # Interfaz gráfica directa
+                """)
                 return
         
-        # Selección interactiva
-        modo = seleccionar_modo()
-        
-        if modo == "gui":
-            ejecutar_gui()
-        elif modo == "cli":
-            ejecutar_cli()
+        # Ejecutar GUI por defecto
+        ejecutar_gui()
         
     except KeyboardInterrupt:
         print("\n👋 ¡Aplicación interrumpida por el usuario!")
     except Exception as e:
         print(f"\n❌ Error crítico: {e}")
+        input("\nPresione Enter para salir...")
         sys.exit(1)
 
 if __name__ == "__main__":
