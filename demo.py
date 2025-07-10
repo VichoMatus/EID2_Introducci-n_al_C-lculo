@@ -1,9 +1,3 @@
-#!/usr/bin/env python3
-"""
-Script de demostración para resolver automáticamente el problema completo
-de la Ley de Amdahl para grupos pares (GPU)
-"""
-
 import sys
 import os
 
@@ -23,7 +17,6 @@ from src.infrastructure.analizador_componentes import AnalizadorComponentes
 
 
 def resolver_problema_gpu_automatico():
-    """Resuelve automáticamente el problema para grupos pares (GPU)"""
     
     print("="*80)
     print("           RESOLUCIÓN AUTOMÁTICA - PROBLEMA GPU (GRUPOS PARES)")
@@ -39,7 +32,7 @@ def resolver_problema_gpu_automatico():
     calcular_tiempo = CalcularTiempoOptimizadoUseCase(calculador)
     analizar_componentes = AnalizarComponentesUseCase(analizador)
     
-    # 1. Cargar componentes predefinidos
+    # Cargar componentes predefinidos
     print("\n1️⃣  COMPONENTES GPU PREDEFINIDOS:")
     print("-" * 60)
     componentes = cargar_componentes.execute()
@@ -49,7 +42,7 @@ def resolver_problema_gpu_automatico():
         print(f"  - Fracción mejorable (f): {componente.porcentaje_mejora:.1%}")
         print(f"  - Factor de mejora (k): {componente.factor_mejora}")
     
-    # 2. Calcular aceleración para cada componente
+    # Calcular aceleración para cada componente
     print("\n2️⃣  ACELERACIONES CALCULADAS:")
     print("-" * 60)
     resultados = []
@@ -64,7 +57,7 @@ def resolver_problema_gpu_automatico():
         print(f"  - Eficiencia: {(resultado.aceleracion/resultado.limite_teorico)*100:.1f}%")
         print()
     
-    # 3. Análisis específico: renderizado de frame (50ms → ?)
+    # Analisis específico: renderizado de frame (50ms → ?)
     print("3️⃣  ANÁLISIS TIEMPO RENDERIZADO (NÚCLEOS CUDA):")
     print("-" * 60)
     nucleos_cuda = next(c for c in componentes 
@@ -77,7 +70,7 @@ def resolver_problema_gpu_automatico():
     print(f"• Mejora temporal: {resultado_tiempo.porcentaje_mejora_total:.1f}%")
     print(f"• Reducción: {resultado_tiempo.tiempo_original - resultado_tiempo.tiempo_optimizado:.2f} ms")
     
-    # 4. Determinar componente para ≥30% aceleración
+    # Determinar componente para ≥30% aceleración
     print("\n4️⃣  COMPONENTE PARA ≥30% ACELERACIÓN (A ≥ 1.30):")
     print("-" * 60)
     
@@ -95,7 +88,7 @@ def resolver_problema_gpu_automatico():
         mejor = max(resultados, key=lambda x: x.aceleracion)
         print(f"   🥇 {mejor.componente.nombre}: {mejor.aceleracion:.4f}x ({(mejor.aceleracion-1)*100:.1f}%)")
     
-    # 5. Análisis comparativo completo
+    # Analisis comparativo completo
     print("\n5️⃣  ANÁLISIS COMPARATIVO:")
     print("-" * 60)
     analisis = analizar_componentes.determinar_mejor_optimizacion(componentes)
@@ -106,7 +99,7 @@ def resolver_problema_gpu_automatico():
         emoji = "🥇" if i == 1 else "🥈" if i == 2 else "🥉" if i == 3 else "4️⃣"
         print(f"   {emoji} {i}°. {nombre}: {aceleracion:.4f}x")
     
-    # 6. Explicación técnica NVLink
+    # Explicación técnica NVLink
     print("\n6️⃣  ¿POR QUÉ NVLINK TIENE IMPACTO LIMITADO?")
     print("-" * 60)
     nvlink = next(c for c in componentes 
@@ -119,7 +112,7 @@ def resolver_problema_gpu_automatico():
     print(f"• La Ley de Amdahl muestra que el 80% NO mejorable limita el impacto total")
     print(f"• Fórmula: A = 1/((1-{nvlink.porcentaje_mejora}) + {nvlink.porcentaje_mejora}/{nvlink.factor_mejora}) = {nvlink_resultado.aceleracion:.4f}")
     
-    # 7. Comparación Texturizado vs VRAM
+    # Comparación Texturizado vs VRAM
     print("\n7️⃣  COMPARACIÓN: TEXTURIZADO vs MEMORIA VRAM:")
     print("-" * 60)
     
@@ -140,7 +133,7 @@ def resolver_problema_gpu_automatico():
     else:
         print(f"✅ VRAM es mejor opción ({((vram_resultado.aceleracion - tex_resultado.aceleracion)/tex_resultado.aceleracion*100):.1f}% más aceleración)")
     
-    # 8. Resumen ejecutivo
+    # Resumen ejecutivo
     print("\n8️⃣  RESUMEN EJECUTIVO:")
     print("-" * 60)
     print("📋 RESPUESTAS AL PROBLEMA:")

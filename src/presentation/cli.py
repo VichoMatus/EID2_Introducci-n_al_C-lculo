@@ -1,6 +1,3 @@
-"""
-Interfaz de línea de comandos para la aplicación de Ley de Amdahl
-"""
 import sys
 from typing import List, Optional
 from ..domain.entities import ComponenteGPU
@@ -18,7 +15,6 @@ from ..infrastructure.analizador_componentes import AnalizadorComponentes
 
 
 class CLIAmdahl:
-    """Interfaz de línea de comandos para la aplicación"""
     
     def __init__(self):
         # Dependencias
@@ -35,7 +31,6 @@ class CLIAmdahl:
         self.componentes_usuario: List[ComponenteGPU] = []
     
     def mostrar_menu_principal(self):
-        """Muestra el menú principal de la aplicación"""
         print("\n" + "="*70)
         print("    CALCULADORA LEY DE AMDAHL - OPTIMIZACIÓN GPU")
         print("="*70)
@@ -49,7 +44,6 @@ class CLIAmdahl:
         print("="*70)
     
     def ejecutar(self):
-        """Ejecuta la aplicación principal"""
         while True:
             try:
                 self.mostrar_menu_principal()
@@ -81,7 +75,6 @@ class CLIAmdahl:
                 input("Presione Enter para continuar...")
     
     def resolver_problema_completo(self):
-        """Resuelve el problema completo para grupos pares (GPU)"""
         print("\n" + "="*60)
         print("  RESOLUCIÓN PROBLEMA COMPLETO - GRUPOS PARES (GPU)")
         print("="*60)
@@ -109,7 +102,6 @@ class CLIAmdahl:
         input("\nPresione Enter para continuar...")
     
     def _resolver_sin_graficos(self):
-        """Resuelve el problema sin generar gráficos"""
         componentes = self.cargar_componentes.execute()
         
         print("\n1. ACELERACIÓN PARA CADA COMPONENTE:")
@@ -154,7 +146,6 @@ class CLIAmdahl:
             print(f"   {i}. {nombre}: {aceleracion:.4f}x")
     
     def calcular_componente_personalizado(self):
-        """Permite calcular aceleración para un componente personalizado"""
         print("\n" + "="*50)
         print("  CÁLCULO COMPONENTE PERSONALIZADO")
         print("="*50)
@@ -203,7 +194,6 @@ class CLIAmdahl:
         input("\nPresione Enter para continuar...")
     
     def mostrar_componentes_predefinidos(self):
-        """Muestra los componentes GPU predefinidos"""
         print("\n" + "="*60)
         print("  COMPONENTES GPU PREDEFINIDOS (GRUPOS PARES)")
         print("="*60)
@@ -223,7 +213,6 @@ class CLIAmdahl:
         input("\nPresione Enter para continuar...")
     
     def analizar_ultimos_tres(self):
-        """Analiza los últimos 3 componentes ingresados por el usuario"""
         print("\n" + "="*50)
         print("  ANÁLISIS ÚLTIMOS 3 COMPONENTES")
         print("="*50)
@@ -262,7 +251,6 @@ class CLIAmdahl:
         input("\nPresione Enter para continuar...")
     
     def generar_graficos_menu(self):
-        """Menú para generar gráficos (requiere matplotlib)"""
         print("\n" + "="*50)
         print("  GENERACIÓN DE GRÁFICOS")
         print("="*50)
@@ -304,7 +292,6 @@ class CLIAmdahl:
         input("\nPresione Enter para continuar...")
     
     def _graficar_comparacion_componentes(self, visualizador):
-        """Genera gráfico de comparación de componentes"""
         componentes = self.cargar_componentes.execute()
         datos = []
         
@@ -318,12 +305,10 @@ class CLIAmdahl:
         visualizador.graficar_comparacion_componentes(datos)
     
     def _graficar_limite_teorico(self, visualizador):
-        """Genera gráfico del límite teórico"""
         porcentajes = [i/100 for i in range(5, 96, 5)]
         visualizador.graficar_limite_teorico(porcentajes)
     
     def mostrar_informacion_teorica(self):
-        """Muestra información teórica sobre la Ley de Amdahl"""
         print("\n" + "="*70)
         print("  INFORMACIÓN TEÓRICA - LEY DE AMDAHL")
         print("="*70)
@@ -362,7 +347,6 @@ mejorable (f) que aumentar indefinidamente el factor k.
         input("Presione Enter para continuar...")
     
     def _mostrar_resultados_completos(self, resultados: dict):
-        """Muestra los resultados completos del problema"""
         print("\n🎯 RESULTADOS PROBLEMA COMPLETO:")
         print("="*60)
         
@@ -407,7 +391,6 @@ mejorable (f) que aumentar indefinidamente el factor k.
 
 
 def main():
-    """Función principal de la aplicación"""
     try:
         cli = CLIAmdahl()
         cli.ejecutar()

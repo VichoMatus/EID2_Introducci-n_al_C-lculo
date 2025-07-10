@@ -1,6 +1,3 @@
-"""
-Implementación del analizador de componentes
-"""
 from typing import List
 from ..domain.entities import (
     ComponenteGPU, 
@@ -12,7 +9,7 @@ from ..domain.entities import (
 
 
 class AnalizadorComponentes(IAnalizador):
-    """Implementación del analizador de componentes GPU"""
+    #Implementación del analizador de componentes GPU
     
     def __init__(self, calculador: ICalculadorAmdahl):
         self.calculador = calculador
@@ -21,15 +18,6 @@ class AnalizadorComponentes(IAnalizador):
         self, 
         componentes: List[ComponenteGPU]
     ) -> AnalisisComparativo:
-        """
-        Determina cuál componente es mejor optimizar basado en la aceleración
-        
-        Args:
-            componentes: Lista de componentes a analizar
-            
-        Returns:
-            AnalisisComparativo: Análisis completo con el mejor componente
-        """
         resultados = []
         mejor_aceleracion = 0
         mejor_componente = None
@@ -61,15 +49,6 @@ class AnalizadorComponentes(IAnalizador):
         self, 
         componentes: List[ComponenteGPU]
     ) -> AnalisisComparativo:
-        """
-        Analiza los últimos 3 componentes ingresados
-        
-        Args:
-            componentes: Lista completa de componentes
-            
-        Returns:
-            AnalisisComparativo: Análisis de los últimos 3
-        """
         ultimos_tres = componentes[-3:] if len(componentes) >= 3 else componentes
         return self.determinar_mejor_componente(ultimos_tres)
     
@@ -78,7 +57,6 @@ class AnalizadorComponentes(IAnalizador):
         mejor_componente: ComponenteGPU, 
         resultados: List[ResultadoAmdahl]
     ) -> str:
-        """Genera justificación técnica para la selección del mejor componente"""
         if not mejor_componente:
             return "No se pudo determinar un mejor componente"
         
@@ -112,15 +90,6 @@ class AnalizadorComponentes(IAnalizador):
         self, 
         componente: ComponenteGPU
     ) -> dict:
-        """
-        Calcula métricas de eficiencia para un componente
-        
-        Args:
-            componente: Componente a analizar
-            
-        Returns:
-            dict: Métricas de eficiencia
-        """
         aceleracion = self.calculador.calcular_aceleracion(componente)
         limite_teorico = self.calculador.calcular_limite_teorico(componente)
         
@@ -140,16 +109,6 @@ class AnalizadorComponentes(IAnalizador):
         componentes: List[ComponenteGPU], 
         aceleracion_minima: float
     ) -> List[ComponenteGPU]:
-        """
-        Encuentra componentes que cumplan una aceleración mínima
-        
-        Args:
-            componentes: Lista de componentes
-            aceleracion_minima: Aceleración mínima requerida
-            
-        Returns:
-            List[ComponenteGPU]: Componentes que cumplen el criterio
-        """
         componentes_validos = []
         
         for componente in componentes:

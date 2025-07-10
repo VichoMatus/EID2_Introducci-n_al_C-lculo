@@ -1,6 +1,3 @@
-"""
-Implementación del visualizador de gráficos usando matplotlib
-"""
 import matplotlib.pyplot as plt
 import numpy as np
 from typing import List
@@ -9,7 +6,6 @@ from ..infrastructure.calculador_amdahl import CalculadorAmdahl
 
 
 class VisualizadorMatplotlib(IVisualizador):
-    """Implementación del visualizador usando matplotlib"""
     
     def __init__(self):
         self.calculadora = CalculadorAmdahl()
@@ -23,13 +19,6 @@ class VisualizadorMatplotlib(IVisualizador):
         porcentajes_mejora: List[float], 
         factores_mejora: List[float]
     ) -> None:
-        """
-        Gráfica A vs k para diferentes valores de f
-        
-        Args:
-            porcentajes_mejora: Lista de valores f
-            factores_mejora: Lista de valores k
-        """
         plt.figure(figsize=(12, 8))
         
         for f in porcentajes_mejora:
@@ -55,13 +44,13 @@ class VisualizadorMatplotlib(IVisualizador):
         plt.legend(fontsize=10)
         plt.xlim(min(factores_mejora), max(factores_mejora))
         
-        # Añadir líneas de referencia
+        # Añadir lineas de referencia
         plt.axhline(y=1, color='red', linestyle='--', alpha=0.5, label='Sin mejora (A=1)')
         
         plt.tight_layout()
         plt.show()
         
-        # Guardar gráfico
+        # Guardar grafico
         plt.savefig('aceleracion_vs_factor.png', dpi=300, bbox_inches='tight')
         print("Gráfico guardado como 'aceleracion_vs_factor.png'")
     
@@ -70,13 +59,6 @@ class VisualizadorMatplotlib(IVisualizador):
         factores_mejora: List[float], 
         porcentajes_mejora: List[float]
     ) -> None:
-        """
-        Gráfica A vs f para diferentes valores de k
-        
-        Args:
-            factores_mejora: Lista de valores k
-            porcentajes_mejora: Lista de valores f
-        """
         plt.figure(figsize=(12, 8))
         
         for k in factores_mejora:
@@ -102,29 +84,23 @@ class VisualizadorMatplotlib(IVisualizador):
         plt.legend(fontsize=10)
         plt.xlim(0, 1)
         
-        # Añadir líneas de referencia
+        # Añadir lineas de referencia
         plt.axhline(y=1, color='red', linestyle='--', alpha=0.5, label='Sin mejora (A=1)')
         
         plt.tight_layout()
         plt.show()
         
-        # Guardar gráfico
+        # Guardar grafico
         plt.savefig('aceleracion_vs_porcentaje.png', dpi=300, bbox_inches='tight')
         print("Gráfico guardado como 'aceleracion_vs_porcentaje.png'")
     
     def graficar_comparacion_componentes(self, componentes_data: List[dict]) -> None:
-        """
-        Gráfica de barras comparando aceleraciones de componentes
-        
-        Args:
-            componentes_data: Lista de diccionarios con 'nombre' y 'aceleracion'
-        """
         plt.figure(figsize=(12, 6))
         
         nombres = [comp['nombre'] for comp in componentes_data]
         aceleraciones = [comp['aceleracion'] for comp in componentes_data]
         
-        # Crear gráfico de barras con colores diferentes
+        # Crear grafico de barras con colores diferentes
         colores = plt.cm.viridis(np.linspace(0, 1, len(nombres)))
         barras = plt.bar(nombres, aceleraciones, color=colores, alpha=0.8)
         
@@ -143,17 +119,11 @@ class VisualizadorMatplotlib(IVisualizador):
         plt.tight_layout()
         plt.show()
         
-        # Guardar gráfico
+        # Guardar grafico
         plt.savefig('comparacion_componentes.png', dpi=300, bbox_inches='tight')
         print("Gráfico guardado como 'comparacion_componentes.png'")
     
     def graficar_limite_teorico(self, porcentajes_mejora: List[float]) -> None:
-        """
-        Gráfica del límite teórico A_max = 1/(1-f)
-        
-        Args:
-            porcentajes_mejora: Lista de valores f
-        """
         plt.figure(figsize=(10, 6))
         
         limites = [1/(1-f) if f < 1 else float('inf') for f in porcentajes_mejora]
@@ -177,6 +147,6 @@ class VisualizadorMatplotlib(IVisualizador):
         plt.tight_layout()
         plt.show()
         
-        # Guardar gráfico
+        # Guardar grafico
         plt.savefig('limite_teorico.png', dpi=300, bbox_inches='tight')
         print("Gráfico guardado como 'limite_teorico.png'")

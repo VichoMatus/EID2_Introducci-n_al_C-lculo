@@ -1,10 +1,3 @@
-#!/usr/bin/env python3
-"""
-Aplicación GUI principal para el cálculo de la Ley de Amdahl
-Proyecto: EID2 - Introducción al Cálculo
-Interfaz: CustomTkinter (GUI Moderna)
-"""
-
 import sys
 import os
 

@@ -1,13 +1,9 @@
-"""
-Objetos de valor para la aplicación de Ley de Amdahl
-"""
 from dataclasses import dataclass
 from typing import List
 
 
 @dataclass(frozen=True)
 class ComponentesGPUPredefinidos:
-    """Componentes GPU predefinidos para grupos pares"""
     
     NUCLEOS_CUDA = "Núcleos CUDA"
     MEMORIA_VRAM = "Memoria VRAM" 
@@ -16,7 +12,6 @@ class ComponentesGPUPredefinidos:
     
     @classmethod
     def obtener_todos(cls) -> List[str]:
-        """Retorna todos los componentes predefinidos"""
         return [
             cls.NUCLEOS_CUDA,
             cls.MEMORIA_VRAM,
@@ -27,7 +22,6 @@ class ComponentesGPUPredefinidos:
 
 @dataclass(frozen=True)
 class ConfiguracionGPUPar:
-    """Configuración predefinida para grupos pares (GPU)"""
     
     # Datos del problema según el PDF
     NUCLEOS_CUDA_PORCENTAJE = 0.35  # 35%
@@ -47,7 +41,6 @@ class ConfiguracionGPUPar:
 
 @dataclass(frozen=True)
 class ConstantesMatematicas:
-    """Constantes matemáticas utilizadas en los cálculos"""
     
     LIMITE_INFINITO = 1000  # Aproximación para k → ∞
     PRECISION_DECIMAL = 4   # Decimales para redondeo

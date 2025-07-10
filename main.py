@@ -1,16 +1,3 @@
-#!/usr/bin/env python3
-"""
-Aplicación principal para el cálculo de la Ley de Amdahl
-Proyecto: EID2 - Introducción al Cálculo
-Autor: Aplicación con Arquitectura Limpia
-Fecha: Julio 2025
-
-Esta aplicación resuelve el problema de optimización de GPU usando la Ley de Amdahl
-para grupos pares según el documento del proyecto.
-
-Interfaz: CustomTkinter (GUI Moderna)
-"""
-
 import sys
 import os
 
@@ -18,7 +5,7 @@ import os
 sys.path.insert(0, os.path.join(os.path.dirname(__file__), 'src'))
 
 def ejecutar_gui():
-    """Ejecuta la interfaz gráfica"""
+    #Ejecuta la interfaz gráfica
     try:
         print("🚀 Iniciando Calculadora Ley de Amdahl - Interfaz Gráfica")
         print("📊 Cargando componentes y configuración...")
@@ -36,7 +23,6 @@ def ejecutar_gui():
         ejecutar_cli()
 
 def ejecutar_cli():
-    """Ejecuta la interfaz de línea de comandos como respaldo"""
     try:
         print("💻 Iniciando interfaz de línea de comandos...")
         from src.presentation.cli import main as cli_main
@@ -47,7 +33,6 @@ def ejecutar_cli():
         sys.exit(1)
 
 def main():
-    """Función principal - Inicia directamente la GUI"""
     try:
         # Verificar argumentos de línea de comandos para casos especiales
         if len(sys.argv) > 1:

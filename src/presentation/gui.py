@@ -1,6 +1,3 @@
-"""
-Interfaz gráfica principal usando CustomTkinter para la aplicación de Ley de Amdahl
-"""
 import customtkinter as ctk
 import tkinter as tk
 from tkinter import messagebox, scrolledtext
@@ -72,7 +69,6 @@ class AmdahlGUIApp:
         self.crear_barra_estado()
     
     def crear_panel_controles(self):
-        """Crea el panel de controles lateral"""
         # Frame principal izquierdo
         self.frame_controles = ctk.CTkFrame(self.root, width=350)
         self.frame_controles.grid(row=0, column=0, padx=(10, 5), pady=10, sticky="nsew")
@@ -107,7 +103,6 @@ class AmdahlGUIApp:
         self.crear_seccion_analisis()
     
     def crear_seccion_predefinido(self):
-        """Sección para el problema predefinido"""
         # Marco
         frame_pred = ctk.CTkFrame(self.frame_controles)
         frame_pred.pack(fill="x", padx=10, pady=(0, 15))
@@ -139,7 +134,6 @@ class AmdahlGUIApp:
         self.btn_mostrar_comp.pack(pady=(0, 15), padx=15, fill="x")
     
     def crear_seccion_personalizado(self):
-        """Sección para componentes personalizados"""
         # Marco
         frame_pers = ctk.CTkFrame(self.frame_controles)
         frame_pers.pack(fill="x", padx=10, pady=(0, 15))
@@ -176,12 +170,9 @@ class AmdahlGUIApp:
         self.btn_calcular.pack(pady=(0, 15), padx=15, fill="x")
     
     def crear_seccion_graficos(self):
-        """Sección para gráficos"""
-        # Marco
         frame_graf = ctk.CTkFrame(self.frame_controles)
         frame_graf.pack(fill="x", padx=10, pady=(0, 15))
         
-        # Título sección
         ctk.CTkLabel(
             frame_graf, 
             text="📈 Gráficos", 
@@ -214,12 +205,9 @@ class AmdahlGUIApp:
         self.btn_graf_comp.pack(pady=(0, 15), padx=15, fill="x")
     
     def crear_seccion_analisis(self):
-        """Sección para análisis"""
-        # Marco
         frame_anal = ctk.CTkFrame(self.frame_controles)
         frame_anal.pack(fill="x", padx=10, pady=(0, 15))
         
-        # Título sección
         ctk.CTkLabel(
             frame_anal, 
             text="🔍 Análisis", 
@@ -236,7 +224,6 @@ class AmdahlGUIApp:
         self.btn_analizar.pack(pady=(0, 15), padx=15, fill="x")
     
     def crear_panel_principal(self):
-        """Crea el panel principal para resultados"""
         # Frame principal derecho
         self.frame_principal = ctk.CTkFrame(self.root)
         self.frame_principal.grid(row=0, column=1, padx=(5, 10), pady=10, sticky="nsew")
@@ -263,7 +250,6 @@ class AmdahlGUIApp:
         self.crear_pestana_teoria()
     
     def crear_pestana_resultados(self):
-        """Crea la pestaña de resultados"""
         self.tab_resultados = self.notebook.add("📋 Resultados")
         
         # Área de texto para resultados
@@ -287,7 +273,6 @@ class AmdahlGUIApp:
         )
     
     def crear_pestana_graficos(self):
-        """Crea la pestaña de gráficos"""
         self.tab_graficos = self.notebook.add("📈 Gráficos")
         
         # Frame para el gráfico
@@ -307,7 +292,6 @@ class AmdahlGUIApp:
         self.label_grafico.pack(expand=True)
     
     def crear_pestana_teoria(self):
-        """Crea la pestaña de información teórica"""
         self.tab_teoria = self.notebook.add("📚 Teoría")
         
         # Área de texto para teoría
@@ -396,7 +380,6 @@ La Ley de Amdahl es fundamental para:
         self.text_teoria.insert("0.0", contenido_teoria)
     
     def crear_barra_estado(self):
-        """Crea la barra de estado"""
         self.barra_estado = ctk.CTkLabel(
             self.root,
             text="✅ Listo - Seleccione una opción para comenzar",
@@ -405,12 +388,10 @@ La Ley de Amdahl es fundamental para:
         self.barra_estado.grid(row=1, column=0, columnspan=2, sticky="ew", padx=10, pady=(0, 5))
     
     def actualizar_estado(self, mensaje: str):
-        """Actualiza la barra de estado"""
         self.barra_estado.configure(text=mensaje)
         self.root.update()
     
     def cargar_componentes_predefinidos(self):
-        """Carga los componentes GPU predefinidos"""
         try:
             componentes = self.cargar_componentes.execute()
             self.actualizar_estado(f"✅ Cargados {len(componentes)} componentes predefinidos")
@@ -418,7 +399,6 @@ La Ley de Amdahl es fundamental para:
             self.actualizar_estado(f"❌ Error al cargar componentes: {e}")
     
     def resolver_problema_completo(self):
-        """Resuelve el problema completo para grupos pares"""
         self.actualizar_estado("🔄 Resolviendo problema completo...")
         
         def resolver():
@@ -439,7 +419,6 @@ La Ley de Amdahl es fundamental para:
         threading.Thread(target=resolver, daemon=True).start()
     
     def mostrar_resultados_completos(self, resultados: dict):
-        """Muestra los resultados completos en la interfaz"""
         try:
             # Limpiar área de resultados
             self.text_resultados.delete("0.0", "end")
@@ -516,7 +495,6 @@ La Ley de Amdahl es fundamental para:
             self.mostrar_error(f"Error al mostrar resultados: {e}")
     
     def mostrar_componentes_predefinidos(self):
-        """Muestra los componentes GPU predefinidos"""
         try:
             self.actualizar_estado("📋 Mostrando componentes predefinidos...")
             
@@ -548,7 +526,6 @@ La Ley de Amdahl es fundamental para:
             self.mostrar_error(f"Error al mostrar componentes: {e}")
     
     def calcular_componente_personalizado(self):
-        """Calcula aceleración para un componente personalizado"""
         try:
             # Obtener datos del formulario
             nombre = self.entry_nombre.get().strip()
@@ -619,7 +596,6 @@ La Ley de Amdahl es fundamental para:
             self.mostrar_error(f"Error al calcular componente: {e}")
     
     def analizar_ultimos_tres(self):
-        """Analiza los últimos 3 componentes ingresados"""
         try:
             if len(self.componentes_usuario) == 0:
                 messagebox.showwarning(
@@ -674,7 +650,6 @@ La Ley de Amdahl es fundamental para:
             self.mostrar_error(f"Error al analizar componentes: {e}")
     
     def graficar_a_vs_k(self):
-        """Genera gráfico A vs k"""
         try:
             self.actualizar_estado("📊 Generando gráfico A vs k...")
             
@@ -707,7 +682,6 @@ La Ley de Amdahl es fundamental para:
             self.mostrar_error(f"Error al generar gráfico A vs k: {e}")
     
     def graficar_a_vs_f(self):
-        """Genera gráfico A vs f"""
         try:
             self.actualizar_estado("📈 Generando gráfico A vs f...")
             
@@ -740,7 +714,6 @@ La Ley de Amdahl es fundamental para:
             self.mostrar_error(f"Error al generar gráfico A vs f: {e}")
     
     def graficar_comparacion(self):
-        """Genera gráfico de comparación de componentes"""
         try:
             self.actualizar_estado("🏆 Generando comparación de componentes...")
             
@@ -779,7 +752,6 @@ La Ley de Amdahl es fundamental para:
             self.mostrar_error(f"Error al generar comparación: {e}")
     
     def mostrar_grafico_en_interfaz(self, fig):
-        """Muestra un gráfico matplotlib en la interfaz"""
         try:
             # Limpiar frame de gráfico
             for widget in self.frame_grafico.winfo_children():
@@ -799,12 +771,10 @@ La Ley de Amdahl es fundamental para:
             self.mostrar_error(f"Error al mostrar gráfico: {e}")
     
     def mostrar_error(self, mensaje: str):
-        """Muestra un mensaje de error"""
         messagebox.showerror("Error", mensaje)
         self.actualizar_estado(f"❌ {mensaje}")
     
     def ejecutar(self):
-        """Ejecuta la aplicación"""
         try:
             self.root.mainloop()
         except Exception as e:
@@ -812,7 +782,6 @@ La Ley de Amdahl es fundamental para:
 
 
 def main():
-    """Función principal para ejecutar la aplicación GUI"""
     try:
         app = AmdahlGUIApp()
         app.ejecutar()
