@@ -1,0 +1,53 @@
+{
+    "proyecto": {
+        "nombre": "EID2 - Introducción al Cálculo",
+        "tema": "Ley de Amdahl - Optimización GPU",
+        "version": "1.0.0",
+        "fecha": "Julio 2025",
+        "tipo_grupo": "par",
+        "arquitectura": "clean_architecture"
+    },
+    "gui": {
+        "tema": "dark",
+        "color_theme": "blue",
+        "ventana_inicial": {
+            "ancho": 1200,
+            "alto": 800,
+            "minimo_ancho": 1000,
+            "minimo_alto": 700
+        },
+        "panel_controles_ancho": 350
+    },
+    "calculos": {
+        "precision_decimal": 4,
+        "limite_infinito_aproximado": 1000,
+        "aceleracion_objetivo_porcentaje": 30
+    },
+    "componentes_gpu": {
+        "nucleos_cuda": {
+            "porcentaje_mejora": 0.35,
+            "factor_mejora": 5
+        },
+        "memoria_vram": {
+            "porcentaje_mejora": 0.20,
+            "factor_mejora": 3
+        },
+        "unidades_texturizado": {
+            "porcentaje_mejora": 0.25,
+            "factor_mejora": 7
+        },
+        "interconexion_nvlink": {
+            "porcentaje_mejora": 0.20,
+            "factor_mejora": 10
+        }
+    },
+    "problema_gpu": {
+        "tiempo_renderizado_original_ms": 50
+    },
+    "graficos": {
+        "guardado_automatico": true,
+        "formatos": ["png"],
+        "dpi": 300,
+        "figura_tamaño": [10, 6]
+    }
+}
