@@ -656,8 +656,8 @@ La Ley de Amdahl es fundamental para:
             # Crear figura
             fig, ax = plt.subplots(figsize=(10, 6))
             
-            # Datos
-            k_values = np.arange(1, 21)
+            # Datos - k debe ser mayor a 1
+            k_values = np.arange(1.1, 21, 0.5)  # Comenzar en 1.1 para evitar error con k=1
             f_values = [0.25, 0.35]
             
             for f in f_values:
